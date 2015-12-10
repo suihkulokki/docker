@@ -35,10 +35,12 @@ RUN echo "deb http://httpredir.debian.org/debian jessie-backports main" >> /etc/
 	bash-completion \
 	btrfs-tools \
 	build-essential \
+	cgroupfs-mount \
 	createrepo \
 	curl \
 	dpkg-sig \
 	git \
+	golang \
 	iptables \
 	libapparmor-dev \
 	libcap-dev \
@@ -65,12 +67,6 @@ RUN cd /usr/local/lvm2 \
 	&& make device-mapper \
 	&& make install_device-mapper
 # see https://git.fedorahosted.org/cgit/lvm2.git/tree/INSTALL
-
-# Install Go
-RUN wget http://incoming.debian.org/debian-buildd/pool/main/g/golang/golang-go_1.5.1-4~bpo8+1_arm64.deb && \
-    wget http://incoming.debian.org/debian-buildd/pool/main/g/golang/golang-src_1.5.1-4~bpo8+1_arm64.deb && \
-    dpkg -i golang*deb && \
-    apt-get install -y golang
 
 #ENV GO_VERSION 1.5.1
 #RUN curl -sSL https://golang.org/dl/go${GO_VERSION}.src.tar.gz | tar -v -C /usr/local -xz \
